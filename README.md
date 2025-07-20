@@ -1,6 +1,6 @@
 # Boilerplate Laravel 12
 
-This project is built with Laravel 12 and PHP 8.3, featuring an admin dashboard and Swagger OpenAPI documentation.
+This project is built with Laravel 12 and PHP 8.4, featuring an admin dashboard and Swagger OpenAPI documentation.
 
 ## About This Repository
 
