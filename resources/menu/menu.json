@@ -1,0 +1,29 @@
+[
+    {
+        "title": "home",
+        "permission": "home",
+        "route_name": "dashboard.index",
+        "icon": "fas fa-home",
+        "sub": null
+    },
+    {
+        "title": "settings",
+        "permission": "settings",
+        "route_name": "",
+        "icon": "fas fa-cogs",
+        "sub": [
+            {
+                "title": "settings_user",
+                "permission": "settings_user",
+                "route_name": "dashboard.index",
+                "icon": null
+            },
+            {
+                "title": "settings_role",
+                "permission": "settings_role",
+                "route_name": "dashboard.index",
+                "icon": null
+            }
+        ]
+    }
+]
