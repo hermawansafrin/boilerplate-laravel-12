@@ -15,13 +15,13 @@
             {
                 "title": "settings_user",
                 "permission": "settings_user",
-                "route_name": "dashboard.index",
+                "route_name": "dashboard.settings.users.index",
                 "icon": null
             },
             {
                 "title": "settings_role",
                 "permission": "settings_role",
-                "route_name": "dashboard.index",
+                "route_name": "dashboard.settings.roles.index",
                 "icon": null
             }
         ]

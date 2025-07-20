@@ -9,7 +9,7 @@ class UserHelper
     /**
      * get auth user
      */
-    public function getAuthUser(): ?User
+    public static function getAuthUser(): ?User
     {
         $authUser = auth()->user() ?? null;
 
@@ -19,10 +19,10 @@ class UserHelper
     /**
      * get user data logged in user
      */
-    public function getUserData(): array
+    public static function getUserData(): array
     {
         $datas = [];
-        $authUser = $this->getAuthUser();
+        $authUser = self::getAuthUser();
 
         if ($authUser === null) {
             return $datas;
@@ -37,9 +37,9 @@ class UserHelper
     /**
      * check if user admin has permission to
      */
-    public function isUserAdminHasPermissionTo(string $permissionName): bool
+    public static function isUserAdminHasPermissionTo(string $permissionName): bool
     {
-        $authUser = $this->getAuthUser();
+        $authUser = self::getAuthUser();
         if (! $authUser) {
             return false;
         }

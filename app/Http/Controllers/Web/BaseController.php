@@ -13,11 +13,8 @@ class BaseController extends Controller
      */
     protected function init(): array
     {
-        $menuHelper = app(MenuHelper::class);
-        $userHelper = app(UserHelper::class);
-
-        $menus = $menuHelper->getMenus(true);
-        $user = $userHelper->getUserData();
+        $menus = MenuHelper::getMenus(true);
+        $user = UserHelper::getUserData();
 
         return [
             'menus' => $menus,

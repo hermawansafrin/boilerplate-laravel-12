@@ -14,4 +14,5 @@ return [
     'inactive' => 'Inactive',
     'yes' => 'Yes',
     'no' => 'No',
+    'search' => 'Search',
 ];

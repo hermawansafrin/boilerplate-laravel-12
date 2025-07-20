@@ -14,4 +14,5 @@ return [
     'inactive' => 'Tidak Aktif',
     'yes' => 'Ya',
     'no' => 'Tidak',
+    'search' => 'Cari',
 ];

@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Lang;
  */
 class MenuHelper
 {
-    private array $translates = [];
+    private static array $translates = [];
 
     /**
      * Get menus data by logged in user
      */
-    public function getMenus(bool $onlyAllowedPermissions): array
+    public static function getMenus(bool $onlyAllowedPermissions): array
     {
         $menus = [];
         $authRepo = app(AuthRepository::class);
@@ -27,11 +27,11 @@ class MenuHelper
         }
 
         // TODO: CACHE PER USER
-        $this->translates = $this->getTranslates();
+        self::$translates = self::getTranslates();
 
         $fileName = 'menu.json';
         $path = resource_path("menu/{$fileName}");
-        $menus = $this->menuMultiLanguage(
+        $menus = self::menuMultiLanguage(
             json_decode(file_get_contents($path), true),
         );
 
@@ -95,19 +95,19 @@ class MenuHelper
     /**
      * Get menus data by multi language
      */
-    private function menuMultiLanguage(array $lang): array
+    private static function menuMultiLanguage(array $lang): array
     {
         $lang = collect($lang)->map(function ($item, $key) {
             if (! empty($item['title'])) {
                 $name = $item['title'];
-                $item['title'] = $this->translates[$name];
+                $item['title'] = self::$translates[$name];
                 $item['name'] = $name;
             }
 
             if (isset($item['sub'])) {
                 foreach ($item['sub'] as $key => $value) {
                     $name = $value['title'];
-                    $item['sub'][$key]['title'] = $this->translates[$name];
+                    $item['sub'][$key]['title'] = self::$translates[$name];
                     $item['sub'][$key]['name'] = $name;
                 }
             }
@@ -121,7 +121,7 @@ class MenuHelper
     /**
      * Get all translates from menu file
      */
-    private function getTranslates(): array
+    private static function getTranslates(): array
     {
         $file = 'menu';
         $langs = Lang::get($file);
