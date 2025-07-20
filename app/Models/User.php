@@ -2,15 +2,85 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @OA\Schema(
+ *     schema="CreateUser",
+ *
+ *     @OA\Property(
+ *          property="name",
+ *          type="string",
+ *          example="User Name"
+ *     ),
+ *     @OA\Property(
+ *          property="email",
+ *          type="string",
+ *          example="mail@mail.test"
+ *     ),
+ *     @OA\Property(
+ *          property="role_id",
+ *          type="integer",
+ *          example="1"
+ *     ),
+ *     @OA\Property(
+ *          property="is_active",
+ *          type="integer",
+ *          example="1"
+ *     ),
+ *     @OA\Property(
+ *          property="password",
+ *          type="string",
+ *          example="password"
+ *     ),
+ *     @OA\Property(
+ *          property="password_confirmation",
+ *          type="string",
+ *          example="password"
+ *     ),
+ * )
+ *
+ * @OA\Schema(
+ *     schema="UpdateUser",
+ *
+ *     @OA\Property(
+ *          property="name",
+ *          type="string",
+ *          example="User Name"
+ *     ),
+ *     @OA\Property(
+ *          property="email",
+ *          type="string",
+ *          example="mail@mail.test"
+ *     ),
+ *     @OA\Property(
+ *          property="role_id",
+ *          type="integer",
+ *          example="1"
+ *     ),
+ *     @OA\Property(
+ *          property="is_active",
+ *          type="integer",
+ *          example="1"
+ *     ),
+ *     @OA\Property(
+ *          property="password",
+ *          type="string",
+ *          example="password"
+ *     ),
+ *     @OA\Property(
+ *          property="password_confirmation",
+ *          type="string",
+ *          example="password"
+ *     ),
+ * )
+ */
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,5 +114,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @return string
+     */
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }

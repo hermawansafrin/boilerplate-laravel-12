@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "[php]": {
+        "editor.defaultFormatter": "open-southeners.laravel-pint" // Pastikan Anda memiliki ekstensi 'Laravel Pint' dari Open Southeners
+    },
+    "laravel-pint.enable": true // Pastikan ini true
+
+}
