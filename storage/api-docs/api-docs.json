@@ -1,0 +1,95 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentation API's",
+        "description": "How to login:\n *   Login using the `/authentication/login` endpoint with your email and password.\n *   Copy the token from the response, specifically from `data.token.value`.\n *   Click the Authorize button in the top right corner.\n *   Enter the token in the format: `Bearer <access_token>`.\n *   Click the Authorize button.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1/",
+            "description": "LIVE server"
+        }
+    ],
+    "paths": {
+        "/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get all roles",
+                "description": "Get all roles",
+                "operationId": "69882cb44d43f5247f6c7864c1fde8de",
+                "parameters": [
+                    {
+                        "name": "search_values",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateRole": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "New Role Name"
+                    },
+                    "permission_ids": {
+                        "type": "integer",
+                        "example": [
+                            1,
+                            2
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateRole": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "New Role Update"
+                    },
+                    "permission_ids": {
+                        "type": "integer",
+                        "example": [
+                            1,
+                            2
+                        ]
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Roles",
+            "description": "Roles"
+        }
+    ]
+}
