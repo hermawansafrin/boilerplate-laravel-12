@@ -8,6 +8,7 @@ use App\Http\Requests\Role\ApiStoreRequest;
 use App\Http\Requests\Role\ApiUpdateRequest;
 use App\Repositories\Role\RoleRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends BaseController
 {
@@ -114,9 +115,18 @@ class RoleController extends BaseController
      */
     public function store(ApiStoreRequest $request)
     {
-        $data = $this->repo->create($request->validated());
+        DB::beginTransaction();
 
-        return $this->sendResponse($data, __('messages.created'));
+        try {
+            $data = $this->repo->create($request->validated());
+            DB::commit();
+
+            return $this->sendResponse($data, __('messages.created'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return $this->sendError($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -150,9 +160,18 @@ class RoleController extends BaseController
      */
     public function update(ApiUpdateRequest $request, $id)
     {
-        $data = $this->repo->update($id, $request->validated());
+        DB::beginTransaction();
 
-        return $this->sendResponse($data, __('messages.updated'));
+        try {
+            $data = $this->repo->update($id, $request->validated());
+            DB::commit();
+
+            return $this->sendResponse($data, __('messages.updated'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return $this->sendError($e->getMessage(), 500);
+        }
     }
 
     /**
@@ -181,8 +200,17 @@ class RoleController extends BaseController
      */
     public function destroy(ApiDeleteRequest $request, $id)
     {
-        $data = $this->repo->delete($id);
+        DB::beginTransaction();
 
-        return $this->sendResponse($data, __('messages.deleted'));
+        try {
+            $data = $this->repo->delete($id);
+            DB::commit();
+
+            return $this->sendResponse($data, __('messages.deleted'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return $this->sendError($e->getMessage(), 500);
+        }
     }
 }
