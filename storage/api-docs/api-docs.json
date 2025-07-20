@@ -12,24 +12,50 @@
         }
     ],
     "paths": {
-        "/roles": {
-            "get": {
+        "/authentication/login": {
+            "post": {
                 "tags": [
-                    "Roles"
+                    "Authentication"
                 ],
-                "summary": "Get all roles",
-                "description": "Get all roles",
-                "operationId": "69882cb44d43f5247f6c7864c1fde8de",
+                "summary": "Login to systems and return the token and inits data.",
+                "description": "Do Login",
+                "operationId": "a0b5083c5b1dfa24e85eadffbc31c920",
                 "parameters": [
                     {
-                        "name": "search_values",
+                        "name": "body",
                         "in": "query",
-                        "required": false,
+                        "description": "Login Username & Password",
+                        "required": true,
                         "schema": {
-                            "type": "string"
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "admin@mail.test"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "123456"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/authentication/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout user.",
+                "description": "Do Logout",
+                "operationId": "c3f856105a08dfdd9274d4c4ad74339d",
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -88,8 +114,8 @@
     },
     "tags": [
         {
-            "name": "Roles",
-            "description": "Roles"
+            "name": "Authentication",
+            "description": "Authentication"
         }
     ]
 }

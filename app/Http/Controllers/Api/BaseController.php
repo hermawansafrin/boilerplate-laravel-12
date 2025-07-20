@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Traits\ResponseTrait;
 
 /**
  * @OA\Info(
@@ -31,4 +32,7 @@ use App\Http\Controllers\Controller;
  *  in="header",
  * )
  */
-class BaseController extends Controller {}
+class BaseController extends Controller
+{
+    use ResponseTrait;
+}
