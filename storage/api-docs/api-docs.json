@@ -219,6 +219,158 @@
                     }
                 ]
             }
+        },
+        "/settings/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "description": "Get all users",
+                "operationId": "29d1e1e7739b98470f7f6bbdda64985e",
+                "parameters": [
+                    {
+                        "name": "search_values",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "create user",
+                "description": "create user",
+                "operationId": "22e9fe3d87d9169ba4f479ef01f9d7a0",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/settings/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "get user by id",
+                "description": "get user by id",
+                "operationId": "1768480742f8dbf51cdc69f375c63149",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "update user",
+                "description": "update user by id",
+                "operationId": "a6303ee133749b660df5aca3920ef6b0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "delete user",
+                "description": "delete user by id",
+                "operationId": "6ff928f10b029274c28d3ba66ee22ea6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -254,6 +406,64 @@
                     }
                 },
                 "type": "object"
+            },
+            "CreateUser": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "User Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "mail@mail.test"
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "is_active": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateUser": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "User Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "mail@mail.test"
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "is_active": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "example": "password"
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -272,6 +482,10 @@
         {
             "name": "Roles",
             "description": "Roles"
+        },
+        {
+            "name": "Users",
+            "description": "Users"
         }
     ]
 }
