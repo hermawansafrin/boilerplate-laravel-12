@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Alias middleware
         $middleware->alias([
             'web.user_has_permission_to' => \App\Http\Middleware\WebUserHasPermissionTo::class,
+            'api.user_has_permission_to' => \App\Http\Middleware\ApiUserHasPermissionTo::class,
         ]);
 
         // Add middleware for API routes
